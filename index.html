@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Center</title>
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 4px solid #1a252f;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            font-weight: 700;
+        }
+
+        .header-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .section {
+            margin: 20px 0;
+            display: none;
+            text-align: left;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .items {
+            text-align: left;
+        }
+
+        .items div {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .items div:hover {
+            background-color: #f9f9f9;
+        }
+
+        .items p {
+            font-size: 1.2em;
+            margin: 0;
+            color: #333;
+        }
+
+        .items button {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .items button:hover {
+            background-color: #1e8449;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            border-top: 4px solid #1a252f;
+        }
+
+        .footer-buttons {
+            margin-top: 10px;
+        }
+
+        .footer-buttons button {
+            margin: 0 5px;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-transform: uppercase;
+        }
+
+        .footer-buttons button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .cart-container {
+            display: none;
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .cart-items {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cart-items li {
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .cart-container h2 {
+            color: #3498db;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .cart-btn {
+            display: block;
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            margin: 20px auto;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-transform: uppercase;
+        }
+
+        .cart-btn:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .checkout-form {
+            margin-top: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkout-form input,
+        .checkout-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .checkout-form button {
+            background-color: #27ae60;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-transform: uppercase;
+        }
+
+        .checkout-form button:hover {
+            background-color: #1e8449;
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2em;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .items div {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: center;
+            }
+
+            .items button {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            button {
+                width: 100%;
+                font-size: 16px;
+            }
+
+            .items p {
+                font-size: 1em;
+            }
+
+            .cart-container {
+                padding: 15px;
+            }
+
+            .cart-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to Computer Center</h1>
+        <div class="header-buttons">
+            <button onclick="toggleSection('help-info')">Help</button>
+            <button onclick="toggleSection('contact-info')">Contact</button>
+            <button onclick="toggleSection('items-list')">Our Items</button>
+            <button onclick="toggleSection('about-us')">About Us</button>
+            <button class="cart-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Help Section -->
+        <div id="help-info" class="section">
+            <p>If you face any problem, please contact us:</p>
+            <p>Phone: <a href="tel:01096524556" style="color: #3498db; text-decoration: none;">01096524556</a></p>
+            <p>Email: <a href="mailto:computercenter604@gmail.com"
+                    style="color: #3498db; text-decoration: none;">computercenter604@gmail.com</a></p>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact-info" class="section">
+            <p>Phone: <a href="tel:01096524556" style="color: #3498db; text-decoration: none;">01096524556</a></p>
+            <p>Email: <a href="mailto:computercenter604@gmail.com"
+                    style="color: #3498db; text-decoration: none;">computercenter604@gmail.com</a></p>
+        </div>
+
+        <!-- Items Section -->
+        <div id="items-list" class="section">
+            <h2>Our Items</h2>
+            <div>
+                <p>Dell Precision 7540 - Price: 24000 جنيه</p>
+                <button onclick="addToCart('Dell Precision 7540', 24000)">Add to Cart</button>
+            </div>
+            <div>
+                <p>HP Zbook Workstation - Price: 24000 جنيه</p>
+                <button onclick="addToCart('HP Zbook Workstation', 24000)">Add to Cart</button>
+            </div>
+            <div>
+                <p>Printer HP 3015 - Price: 21000 جنيه</p>
+                <button onclick="addToCart('Printer HP 3015', 21000)">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- About Us Section -->
+        <div id="about-us" class="section">
+            <h2>About Us</h2>
+            <p>Computer Center is your one-stop shop for high-quality computer hardware and accessories. We offer a
+                range of products including laptops, desktops, and printers from top brands. Our mission is to provide
+                reliable products and excellent customer service to meet all your computing needs.</p>
+        </div>
+
+        <!-- Cart Container -->
+        <div id="cart-container" class="cart-container">
+            <h2>Your Cart</h2>
+            <ul id="cart-items" class="cart-items"></ul>
+            <button onclick="showCheckoutForm()">Send Us This Order</button>
+            <!-- Personal Information Form -->
+            <div id="checkout-form" class="checkout-form" style="display: none;">
+                <h2>Enter Your Details</h2>
+                <form id="personal-info-form">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" required>
+
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone" name="phone" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Additional Notes:</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+
+                    <button type="button" onclick="checkOut()">Check Out</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-buttons">
+            <button onclick="openMap()">Map</button>
+        </div>
+    </footer>
+
+    <script>
+        var cart = [];
+
+        function toggleSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            section.style.display = section.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function addToCart(itemName, itemPrice) {
+            cart.push({ name: itemName, price: itemPrice });
+            alert(itemName + ' has been added to your cart.');
+        }
+
+        function toggleCart() {
+            var cartContainer = document.getElementById('cart-container');
+            cartContainer.style.display = cartContainer.style.display === 'block' ? 'none' : 'block';
+
+            var cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            cart.forEach(function (item) {
+                var li = document.createElement('li');
+                li.textContent = item.name + ' - Price: ' + item.price + ' جنيه';
+                cartItems.appendChild(li);
+            });
+
+            // Show checkout form if there are items in the cart
+            var checkoutForm = document.getElementById('checkout-form');
+            checkoutForm.style.display = cart.length > 0 ? 'block' : 'none';
+        }
+
+        function showCheckoutForm() {
+            var cartContainer = document.getElementById('cart-container');
+            var checkoutForm = document.getElementById('checkout-form');
+
+            if (cart.length > 0) {
+                cartContainer.style.display = 'none';
+                checkoutForm.style.display = 'block';
+            } else {
+                alert('Your cart is empty.');
+            }
+        }
+
+        function checkOut() {
+            var form = document.getElementById('personal-info-form');
+            if (form.checkValidity()) {
+                var orderText = 'Order Details:\n\n';
+                cart.forEach(function (item) {
+                    orderText += item.name + ' - Price: ' + item.price + ' جنيه\n';
+                });
+                orderText += '\nCustomer Details:\n';
+                orderText += 'Name: ' + form.name.value + '\n';
+                orderText += 'Address: ' + form.address.value + '\n';
+                orderText += 'Phone: ' + form.phone.value + '\n';
+                orderText += 'Email: ' + form.email.value + '\n';
+                orderText += 'Additional Notes: ' + form.message.value + '\n';
+
+                var subject = 'Order Details from Computer Center';
+                var email = 'motasemahmed40@gmail.com';
+                var mailtoLink = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(orderText);
+
+                window.location.href = mailtoLink;
+
+                // Clear cart and hide checkout form
+                cart = [];
+                document.getElementById('cart-items').innerHTML = '';
+                form.reset();
+                document.getElementById('cart-container').style.display = 'none';
+                document.getElementById('checkout-form').style.display = 'none';
+                alert('Order checked out and sent successfully!');
+            } else {
+                alert('Please fill out all required fields.');
+            }
+        }
+
+        function callUs() {
+            window.location.href = 'tel:01096524556';
+        }
+
+        function openMap() {
+            var mapUrl = 'https://www.google.com/maps?q=Aga+City,+El-Bilouq,+Aw,+El-Galaa+Street';
+            window.open(mapUrl, '_blank');
+        }
+    </script>
+</body>
+
+</html>
